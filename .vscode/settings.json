@@ -1,0 +1,18 @@
+{
+  "latex-workshop.latex.outDir": "../dist",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.recipe.default": "first",
+  "latex-workshop.latex.texDirs": ["src/**/*.tex"],
+  "latex-workshop.latex.search.rootFiles.include": ["src/*.tex"],
+
+  "[latex]": {
+    "editor.formatOnPaste": false,
+    "editor.suggestSelection": "recentlyUsedByPrefix",
+    "editor.defaultFormatter": null,
+    "editor.wordWrap": "wordWrapColumn"
+  },
+
+  "cSpell.language": "en,pt,pt_BR",
+  "cSpell.allowCompoundWords": true
+}

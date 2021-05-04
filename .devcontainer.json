@@ -1,0 +1,43 @@
+{
+  // Define container name
+  "name": "LaTeX",
+
+  // Use DockerHub image
+  "image": "guitsilva/docker-latex",
+
+  // Set userName of non-root user
+  "remoteUser": "vscode",
+
+  // Bind local workspace to container non-root user home folder
+  "workspaceMount": "type=bind,source=${localWorkspaceFolder},target=/home/vscode/${localWorkspaceFolderBasename}",
+  "workspaceFolder": "/home/vscode/${localWorkspaceFolderBasename}",
+
+  // Create Docker volume to storage VS Code's extensions --- persistency
+  "mounts": [
+    "type=volume,source=vsc-latex-extensions,target=/home/vscode/.vscode-server/extensions"
+  ],
+
+  // Install selected LaTeX extensions in container
+  "extensions": [
+    "streetsidesoftware.code-spell-checker",
+    "james-yu.latex-workshop",
+    "stkb.rewrap",
+    "mhutchie.git-graph",
+    "github.vscode-pull-request-github",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "editorconfig.editorconfig"
+  ],
+
+  // TEMPORARY: manually set PDF preview port forwarding
+  "forwardPorts": [35556],
+
+  // Set additional settings for container
+  "settings": {
+    // Use Zsh as default shell in Linux
+    "terminal.integrated.shell.linux": "/bin/zsh",
+
+    // TEMPORARY: manually set PDF preview port forwarding
+    "latex-workshop.viewer.pdf.internal.port": 35556
+  }
+}

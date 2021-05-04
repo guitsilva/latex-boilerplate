@@ -1,0 +1,61 @@
+{
+  "name": "latex-boilerplate",
+  "version": "0.0.0-development",
+  "description": "LaTeX project boilerplate",
+  "author": "Guilherme Tavares da Silva <guilherme.tsilva@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:guitsilva/latex-boilerplate.git"
+  },
+  "private": true,
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
+    "commitizen": "^4.2.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.1.2",
+    "semantic-release": "^17.4.2"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/github",
+        {
+          "assets": [
+            {
+              "path": "src/main.pdf",
+              "name": "main-${nextRelease.gitTag}.pdf"
+            }
+          ]
+        }
+      ],
+      "@semantic-release/npm"
+    ]
+  }
+}
