@@ -16,6 +16,16 @@ jobs:
           root_file: main.tex
           working_directory: src/
 
+  chktex:
+    name: ChkTeX
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Run ChkTeX
+        uses: j2kun/chktex-action@1.0.3
+
   commitlint:
     name: Commitlint
     runs-on: ubuntu-latest
@@ -33,5 +43,5 @@ jobs:
       - name: Install dependencies
         run: npm install --save-dev @commitlint/{cli,config-conventional}
 
-      - name: Run commitlint
+      - name: Run Commitlint
         run: npx commitlint --from HEAD~${{ github.event.pull_request.commits }} --to HEAD
